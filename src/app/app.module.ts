@@ -17,7 +17,17 @@ import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, GameDetailsComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
