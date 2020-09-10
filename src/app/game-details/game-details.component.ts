@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { GameDetailsService } from './game-details.service';
 
 const FAKE_GAME_OBJ = {
   title: 'Sekiro: Shadows Die Twice',
@@ -14,7 +15,12 @@ const FAKE_GAME_OBJ = {
   templateUrl: './game-details.component.html',
   styleUrls: ['./game-details.component.scss']
 })
-export class GameDetailsComponent {
+export class GameDetailsComponent implements OnInit {
   public game$ = new BehaviorSubject(FAKE_GAME_OBJ);
-  constructor() {}
+  constructor(private readonly gameDetailsService: GameDetailsService) {}
+  public ngOnInit(): void {
+    this.gameDetailsService.getGame().subscribe(a => {
+      console.log('AAAA' + JSON.stringify(a));
+    });
+  }
 }

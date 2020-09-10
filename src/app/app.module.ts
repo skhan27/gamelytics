@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, InjectionToken } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,9 +12,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { GameDetailsService } from './game-details/game-details.service';
+import { HttpClientModule } from '@angular/common/http';
+import { AppConfig, API_CONFIG } from './app.config';
 
-//Angular Material
-
+export const IGDB_CONFIG: AppConfig = {
+  url: 'https://api-v3.igdb.com/',
+  key: 'be3af8737e099307337b9f2edc9ad45f'
+};
 @NgModule({
   declarations: [AppComponent, LandingComponent, GameDetailsComponent],
   imports: [
@@ -26,9 +31,13 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: API_CONFIG, useValue: IGDB_CONFIG },
+    GameDetailsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
